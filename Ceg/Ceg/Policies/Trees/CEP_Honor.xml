@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameData>
 	
-	<!--
+	
 	<Policies>
 		<Update>
 			<Where Type="POLICY_HONOR" />
 			<Set BarbarianCombatBonus="10"
-				 CultureFromBarbarianKills="500"
+				 CultureFromBarbarianKills="200"
 				 />
 		</Update>
+		
+		<Update>
+			<Where Type="POLICY_WARRIOR_CODE" />
+			<Set PolicyBranchType="NULL"
+				 GridX="1"
+				 GridY="1"
+				 PortraitIndex="4"
+				 />
+		</Update>
+		
+		<Update>
+			<Where Type="POLICY_MILITARY_TRADITION" />
+			<Set PolicyBranchType="NULL"
+				 GridX="3"
+				 GridY="1"
+				 PortraitIndex="4"
+				 />
+		</Update>
+		
+		<Update>
+			<Where Type="POLICY_MILITARY_CASTE" />
+			<Set GridX="2"
+				 GridY="1"
+				 />
+		</Update>
+		<Update>
+			<Where Type="POLICY_PROFESSIONAL_ARMY" />
+			<Set GridX="3"
+				 GridY="2"
+				
+				 />
+		</Update>
+		<Update>
+			<Where Type="POLICY_DISCIPLINE" />
+			<Set GridX="5"
+				 GridY="2"
+				 PortraitIndex="33"
+				IncludesOneShotFreeUnits="1"
+				GreatGeneralRateModifier="50"
+				 />
+		</Update>
+		
+		<Update>
+			<Where Type="POLICY_HONOR_FINISHER" />
+			<Set GoldFromKills="0"
+				 />
+		</Update>
+		
 		<Row>
 			<Type>POLICY_SPOILS_OF_WAR</Type>
 			<PolicyBranchType>POLICY_BRANCH_HONOR</PolicyBranchType>
@@ -16,7 +64,7 @@
 			<Civilopedia>TXT_KEY_POLICY_SPOILS_OF_WAR_TEXT</Civilopedia>
 			<Help>TXT_KEY_POLICY_SPOILS_OF_WAR_HELP</Help>
 			<CultureCost>10</CultureCost>
-			<GridX>1</GridX>
+			<GridX>6</GridX>
 			<GridY>1</GridY>
 			<PortraitIndex>7</PortraitIndex>
 			<IconAtlas>POLICY_ATLAS</IconAtlas>
@@ -24,6 +72,95 @@
 			<GoldFromKills>200</GoldFromKills>
 			<CitystateCaptureYieldTurns>10</CitystateCaptureYieldTurns>
 		</Row>
+		<Row>
+			<Type>POLICY_GLADIATORS</Type>
+			<PolicyBranchType>POLICY_BRANCH_HONOR</PolicyBranchType>
+			<Description>TXT_KEY_POLICY_GLADIATORS</Description>
+			<Civilopedia>TXT_KEY_POLICY_GLADIATORS_TEXT</Civilopedia>
+			<Help>TXT_KEY_POLICY_GLADIATORS_HELP</Help>
+			<CultureCost>10</CultureCost>
+			<GridX>4</GridX>
+			<GridY>1</GridY>
+			<PortraitIndex>7</PortraitIndex>
+			<IconAtlas>POLICY_ATLAS</IconAtlas>
+			<IconAtlasAchieved>POLICY_A_ATLAS</IconAtlasAchieved>
+			
+		</Row>
+		
+	<Policy_BuildingClassHappiness>
+		<Row>
+			<PolicyType>POLICY_GLADIATORS</PolicyType>
+			<BuildingClassType>BUILDINGCLASS_ARENA</BuildingClassType>
+			<Happiness>1</Happiness>
+		</Row>
+		<Row>
+			<PolicyType>POLICY_HONOR_FINISHER</PolicyType>
+			<BuildingClassType>BUILDINGCLASS_BARRACKS</BuildingClassType>
+			<Happiness>1</Happiness>
+		</Row>
+	</Policy_BuildingClassHappiness>
+		
+	<Policy_BuildingClassProductionModifiers>
+			<Delete PolicyType="POLICY_PROFESSIONAL_ARMY" />
+	</Policy_BuildingClassProductionModifiers>
+	
+	<Policy_UnitCombatProductionModifiers>
+		<Row>
+			<PolicyType>POLICY_PROFESSIONAL_ARMY</PolicyType>
+			<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>
+			<ProductionModifier>15</ProductionModifier>
+		</Row>
+	</Policy_UnitCombatProductionModifiers>
+	
+	<Policy_FreeUnitClasses>
+		<Update>
+			<Where PolicyType="POLICY_WARRIOR_CODE" />
+			<Set PolicyType="POLICY_DISCIPLINE" />
+		</Update>		
+	</Policy_FreeUnitClasses>
+	
+	
+	
+	 <PolicyBranchTypes>
+        <Row>
+            <Type>POLICY_PROFESSIONAL_ARMY</Type>
+            <Description>TXT_KEY_POLICY_PROFESSIONAL_ARMY</Description>
+            <Help>TXT_KEY_POLICY_PROFESSIONAL_ARMY_HELP</Help>
+            <Title>TXT_KEY_HONOR_TITLE</Title>
+        </Row>
+		 <Row>
+            <Type>POLICY_DISCIPLINE</Type>
+            <Description>TXT_KEY_POLICY_DISCIPLINE</Description>
+            <Help>TXT_KEY_POLICY_DISCIPLINE_HELP</Help>
+            <Title>TXT_KEY_HONOR_TITLE</Title>
+        </Row>
+		
+		
+    </PolicyBranchTypes>
+	
+	
+	<Buildings>
+        <Update>
+            <Where Type="BUILDING_TEMPLE_ARTEMIS" />
+            <Set PolicyBranchType="POLICY_PROFESSIONAL_ARMY"
+                 />
+        </Update>
+		
+		<Update>
+			<Where Type="BUILDING_STATUE_ZEUS" />
+			<Set PolicyBranchType="NULL"
+				 />
+		</Update>
+		
+		<Update>
+            <Where Type="BUILDING_STATUE_ZEUS" />
+            <Set PolicyBranchType="POLICY_DISCIPLINE"
+                 />
+        </Update>
+		
+    </Buildings>
+		<!--
+		
 		<Update>
 			<Where Type="POLICY_MILITARY_TRADITION" />
 			<Set PolicyBranchType="POLICY_BRANCH_HONOR"
@@ -42,15 +179,7 @@
 				 IncludesOneShotFreeUnits="1"
 				 />
 		</Update>
-		<Update>
-			<Where Type="POLICY_PROFESSIONAL_ARMY" />
-			<Set GridX="1"
-				 GridY="2"
-				 GoldFromKills="0"
-				 UnitGoldMaintenanceMod="-25"
-				 UnitUpgradeCostMod="-50"
-				 />
-		</Update>
+		
 		<Row>
 			<Type>POLICY_WAR_EPICS</Type>
 			<PolicyBranchType>POLICY_BRANCH_HONOR</PolicyBranchType>
@@ -72,13 +201,7 @@
 				 PortraitIndex="4"
 				 />
 		</Update>
-		<Update>
-			<Where Type="POLICY_MILITARY_CASTE" />
-			<Set PolicyBranchType="NULL"
-				 GridX="3"
-				 GridY="1"
-				 />
-		</Update>
+		
 		<Update>
 			<Where Type="POLICY_HONOR_FINISHER" />
 			<Set GoldFromKills="0"
